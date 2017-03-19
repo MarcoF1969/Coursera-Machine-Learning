@@ -86,7 +86,7 @@ modelFit = train(classe ~ ., data=training, method = "rf",
 
 beep()
 Sys.time() - start
-hours_elapsed = as.numeric(svmFit$times$everything[3]/60/60)
+hours_elapsed = as.numeric(modelFit$times$everything[3]/60/60)
 
 modelFit
 # str(modelFit)

@@ -12,6 +12,7 @@ library(rpart)
 library(rattle)
 library(corrplot)
 library(beepr)
+library(rmarkdown)
 
 rm(list=ls())
 graphics.off()
@@ -32,6 +33,7 @@ testing_input = read.csv(file="pml-testing.csv", header=T, sep=",",
 
 
 # Divide input file in training and testing
+set.seed(12345)
 inTraining = createDataPartition(y=training_input$classe, p=0.8, list=F)
 training = training_input[inTraining, ]
 testing  = training_input[-inTraining, ]
@@ -80,7 +82,7 @@ bootControl <- trainControl(method = "cv", repeats = 1, verboseIter = T)
 
 modelFit = train(classe ~ ., data=training, method = "rf", 
                  preProcess=c("YeoJohnson", "center", "scale"), 
-                 trControl = bootControl)
+                 trControl = bootControl, ntree=20)
 
 beep()
 Sys.time() - start
@@ -122,10 +124,11 @@ testing_outcome
 # Fit classification tree
 modFitRPART = rpart(classe ~ ., data=training, 
                control=rpart.control(cp=0.01) )
-# fancyRpartPlot(modFitRPART)
+fancyRpartPlot(modFitRPART)
 
 # print(modFitRPART)
-# modFitRPART$variable.importance
+dotchart(modFitRPART$variable.importance[1:20], cex=0.7, main="Importance acc to RPART")
+
 
 # Accuracy training RPART
 predRPART = predict(modFitRPART, training, type="class")
@@ -134,4 +137,5 @@ confusionMatrix(predRPART, training$classe)
 # Accuracy testing  RPART
 predRPART = predict(modFitRPART, testing, type="class")
 confusionMatrix(predRPART, testing$classe)
+
 

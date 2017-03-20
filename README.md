@@ -8,7 +8,8 @@ For the Coursera Machine Learning exercise two files are provided, training inpu
 ## The program
 
 1. Preparation
-In the first part of the program the relevant libraries are called and the data is read to R files training_input and testing_input. 
+
+   In the first part of the program the relevant libraries are called and the data is read to R files training_input and testing_input. 
 
 2. Data preparation
 The training_input itself is partitioned into training data and testing data using caret's createDataPartition. Reason for this is that we want to establish unbiased accuracy instead of an optimistic one using the training dataset. Next, we remove all columns for which we have missing data using the counts per column of data unequal to NA using command col_ind = colSums(!is.na(training)). Also, we remove all columns that do not contain predictor data. We apply the same removal of columns to the testing data. We did not remove the user_name since the same test persons are available in testing_input. This means that we can use the test person's identity (say Adelmo) as a predictor since the same type of information is available in the testing input. We also removed highly correlated variables using as a cutoff 0.9 and -0.9 for negative correlations. For exploratory data analysis we generated boxplots to have an impression of the distribution of each feature for each class (A through E). Inspection of these graphs leads to the conclusion that data is often very skewed. 
@@ -22,10 +23,10 @@ The training output first confirms that the training set has 15,699 samples. It 
 The tuning is illustrated with the help of the regularization plot which is shown at the bottom of the R Markdown file. 
 
 5. Model performance
-Confusion atrix of the training set shows that all samples are correctly predicted! There are only counts on the main diagonal of the Confusion matrix; Accuracy, Kappa, specificity and sensitivity are all equal to 1. Although the cross validation helps to avoid overfitting it is best practice to test this also using the test dataset. Confusion matrix is the test dataset shows some counts that are not on the main diagonal but accuracy and kappa are still very high (both at 99%). With the help of the plot(varImp(modelFit)) statement we investigate the most important variables. It turns out that yaw_belt, pitch_forearm, and pitch_belt are on the top of the list. 
+The Confusion matrix of the training set shows that all samples are correctly predicted! There are only counts on the main diagonal of the Confusion matrix; Accuracy, Kappa, specificity and sensitivity are all equal to 1. Although the cross validation helps to avoid overfitting it is best practice to test this also using the test dataset. The Confusion matrix of the test dataset shows some counts that are not on the main diagonal but Accuracy and Kappa are still very high (both at 99%). With the help of the plot(varImp(modelFit)) statement we investigate the most important variables. It turns out that yaw_belt, pitch_forearm, and pitch_belt are on the top of the list. 
 
 6. Benchmarking against CART model
-In order to assess the added value of the random forest we compared the results against a regular Classification And Regression Tree model using rpart. With the settings used the conclusion is that random forst performs significantly better, accuracy on the testing data being only 68%. Interestingly, the CART model has also pitch_forearm and pitch_belt as top-3 predictors. 
+In order to assess the added value of the random forest we compared the results against a regular Classification And Regression Tree model using rpart. With the settings used the conclusion is that random forst performs significantly better, Accuracy on the testing data being only 68%. Interestingly, the CART model has also pitch_forearm and pitch_belt as top-3 predictors. 
 
 7. Predicting the unknown outcomes in the testing input
 My prediction of the 20 unknown outcomes in the testing inout file is: B A B A A E D B A A B C B A E E A B B B

@@ -1,19 +1,11 @@
 # Coursera-Machine-Learning
-Repository for Coursera Machine Learning exercise
-The R code contains the code for the Coursera Machine Learning exercise w.r.t. the dumbbell / biceps curl
-The R Markdown file is on Rpubs: http://rpubs.com/mfolpmer/260062
+Repository for Coursera Machine Learning exercise. 
+The R code contains the code for the Coursera Machine Learning exercise w.r.t. the dumbbell / biceps curl. The
+R Markdown file is on Rpubs: http://rpubs.com/mfolpmer/260062
+## Introduction
+For the Coursera Machine Learning exercise two files are provided, training input and testing input. The files are related to a dumbbell biceps curl exercise in which test persons were asked to perform a biceps curl while wearing a belt. Sensors were attached to the belt, the dumbbell, the fore-arm and arm. While performing the exercise the test persons were assigned to 5 classes, so A, or B, ... or E. If the exercise (or part of the exercise, a movement) was executed correctly, the observation was assigned to class A. Classes B to E were used for several types of errors the test persons could perform. The Coursera exercise is to fit a predictive classification model to the training input and predict the outcomes for the testing input. 
 
-Introduction
-
-For the Coursera Machine Learning exercise two files are provided, training input and testing input. 
-The files are related to a dumbbell biceps curl exercise in which test persons were asked to perform a biceps curl while wearing a belt. 
-Sensors were attached to the belt, the dumbbell, the fore-arm and arm. 
-While performing the exercise the test persons were assigned to 5 classes, so A, or B, ... or E. 
-If the exercise (or part of the exercise, a movement) was executed correctly, the observation was assigned to class A. 
-Classes B to E were used for several types of errors the test persons could perform. 
-The Coursera exercise is to fit a predictive classification model to the training input and predict the outcomes for the testing input. 
-
-The program
+## The program
 
 1. Preparation
 In the first part of the program the relevant libraries are called and the data is read to R files training_input and testing_input. 
